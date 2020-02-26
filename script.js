@@ -4,11 +4,14 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gameplay){
         var dice1 = Math.floor(Math.random()*6)+1;
         var dice2 = Math.floor(Math.random()*6)+1;
+        var inputFault = document.querySelector('.fault-score').value;
+        var faultNum;
+        (inputFault > 0 && inputFault <= 6)? faultNum = inputFault : faultNum = 1;
         document.getElementById('dice-1').style.display = "block";
         document.getElementById('dice-2').style.display = "block";
         document.getElementById('dice-1').src = "dice-"+dice1+".png";
         document.getElementById('dice-2').src = "dice-"+dice2+".png";
-        if(dice1 !== 1 && dice2 !== 1){
+        if(dice1 != inputFault && dice2 != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
         }else {
@@ -21,9 +24,9 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     if(gameplay){
         scores[playerTurn] += roundScore;
         document.querySelector('#score-'+playerTurn).textContent = scores[playerTurn];
-        var input = document.querySelector('.final-score').value;
+        var inputS = document.querySelector('.final-score').value;
         var winScore;
-        (input)? winScore = input : winScore = 100;
+        (inputS)? winScore = inputS : winScore = 100;
         if(scores[playerTurn] >= winScore){
             document.querySelector('#name-'+playerTurn).textContent = "You Win";
             document.getElementById('dice-1').style.display = "none";
