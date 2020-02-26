@@ -51,8 +51,8 @@ function nextPlayer(){
     document.getElementById('current-1').textContent = "0";
     document.querySelector('.player-0-panel').classList.toggle("active");
     document.querySelector('.player-1-panel').classList.toggle("active");
-    document.getElementById('dice-1').style.display = "none";
-    document.getElementById('dice-2').style.display = "none";
+    document.getElementById('dice-1').style.display = "block";
+    document.getElementById('dice-2').style.display = "block";
 }
 
 
