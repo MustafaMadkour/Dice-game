@@ -14,8 +14,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         if(dice1 != inputFault && dice2 != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
-            lose();
+            document.getElementById("losing").style.display = ("none");
         }else {
+            document.getElementById("losing").style.display = ("block");
             nextPlayer();
         }
     }
@@ -43,13 +44,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 
 
 document.querySelector('.btn-new').addEventListener('click', init);
-function lose() { 
-    var sad = document.createElement('img'); 
-    sad.src = 'sad.png'; 
-    sad.id = 'lose';
-    document.getElementById('losing').appendChild(sad); 
-    down.innerHTML = "Image Element Added.";  
-}
+
 
 
 function nextPlayer(){
@@ -71,6 +66,7 @@ function init(){
     gameplay = 1;
     document.getElementById('dice-1').style.display = "none";
     document.getElementById('dice-2').style.display = "none";
+    document.getElementById("losing").style.display = ("none");
     document.getElementById('score-0').textContent = "0";
     document.getElementById('score-1').textContent = "0";
     document.getElementById('current-0').textContent = "0";
