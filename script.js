@@ -14,9 +14,10 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         if(dice1 != inputFault && dice2 != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
-            document.getElementById("losing").style.display = ("none");
+            document.getElementById("losing").classList.remove('sadface-1', 'sadface-2')
         }else {
-            document.getElementById("losing").style.display = ("block");
+            let faildDice = dice1 == inputFault ? 1 : 2;
+            document.getElementById("losing").classList.add(`sadface-${faildDice}`)
             nextPlayer();
         }
     }
@@ -66,7 +67,7 @@ function init(){
     gameplay = 1;
     document.getElementById('dice-1').style.display = "none";
     document.getElementById('dice-2').style.display = "none";
-    document.getElementById("losing").style.display = ("none");
+    // document.getElementById("losing").style.display = ("none");
     document.getElementById('score-0').textContent = "0";
     document.getElementById('score-1').textContent = "0";
     document.getElementById('current-0').textContent = "0";

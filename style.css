@@ -192,3 +192,20 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+.sadface {
+    position: absolute;
+    display:block;
+    width: 30px;
+    left: 55%;
+    transform: translateX(-50%);
+}
+
+.sadface.sadface-1 {
+    top: 107px;
+    display: block;
+}
+
+.sadface.sadface-2 {
+    top: 238px;
+    display: block;
+}
