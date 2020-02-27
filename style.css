@@ -1,12 +1,10 @@
-
-.lose-0,
-.lose-1 {
-    width: 25px;
-    height: 25px;
+#lose {
+    width:25px;
+    height:25px;
 }
 .inputs {
     display: block;
-    position: inline;
+    position: flex;
     text-align: center;
 }
 .final-score {
@@ -20,6 +18,8 @@
     padding: 10px;
     width: 160px;
     text-transform: uppercase;
+    float: inline;
+
 }
 .fault-score {
     left: 50%;
@@ -32,6 +32,8 @@
     padding: 10px;
     width: 160px;
     text-transform: uppercase;
+    float: inline;
+
 }
 
 .final-score:focus { outline: none; }
