@@ -23,7 +23,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         var faultNum; 
         
         // what happen when the dice rolled
-        if(inputFault > 0 && inputFault <= 6){
+        if(inputFault > 0 && inputFault <= 12){
             faultNum = inputFault;
         }else {
             inputFault = 1;
@@ -36,7 +36,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.getElementById('dice-2').src = "dice-"+dice2+".png";
 
         // Scoring procedures
-        if(dice1 != inputFault && dice2 != inputFault){
+        if((dice1 + dice2) != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
             document.getElementById("losing").classList.remove('sadface-1', 'sadface-2', 'losing');
