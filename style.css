@@ -5,11 +5,11 @@
     height: 25px;
 }
 .inputs {
-    display: inline;
-    position: absolute;
+    display: block;
+    position: inline;
+    text-align: center;
 }
 .final-score {
-    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 520px;
@@ -22,7 +22,6 @@
     text-transform: uppercase;
 }
 .fault-score {
-    float: right;
     left: 50%;
     transform: translateX(-50%);
     top: 520px;
