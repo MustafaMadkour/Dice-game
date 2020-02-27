@@ -1,21 +1,41 @@
+// Variables 
 var scores, roundScore, playerTurn, gameplay, sadFace;
+
+// Intiallizing start mode
 init();
+
+// Roll-Dice button
 document.querySelector('.btn-roll').addEventListener('click', function() {
+    
+    
+    // the sad-face to be available in play-mode
     document.querySelector('.sadface').style.display = "block";
+    
+    // Rolling-Dice instructions
     if(gameplay){
+
+        // Rolling 
         var dice1 = Math.floor(Math.random()*6)+1;
         var dice2 = Math.floor(Math.random()*6)+1;
+
+        // change the value of one dice that lose
         var inputFault = document.querySelector('.fault-score').value;
-        var faultNum;  
+        var faultNum; 
+        
+        // what happen when the dice rolled
         if(inputFault > 0 && inputFault <= 6){
             faultNum = inputFault;
         }else {
             inputFault = 1;
         }
+
+        // show dice 
         document.getElementById('dice-1').style.display = "block";
         document.getElementById('dice-2').style.display = "block";
         document.getElementById('dice-1').src = "dice-"+dice1+".png";
         document.getElementById('dice-2').src = "dice-"+dice2+".png";
+
+        // Scoring procedures
         if(dice1 != inputFault && dice2 != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
@@ -29,10 +49,15 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
 });
 
+
+// Hold-Score button
 document.querySelector('.btn-hold').addEventListener('click', function(){
     if(gameplay){
+        // Scoring
         scores[playerTurn] += roundScore;
         document.querySelector('#score-'+playerTurn).textContent = scores[playerTurn];
+        
+        // Winning 
         var inputS = document.querySelector('.final-score').value;
         var winScore;
         (inputS)? winScore = inputS : winScore = 100;
@@ -44,12 +69,15 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
             document.querySelector('.player-'+playerTurn+'-panel').classList.remove('active');
             gameplay = false;
         }else {
+            // Turn Players
             nextPlayer();
         }
     }
 });
 
 
+
+// New-Game button
 document.querySelector('.btn-new').addEventListener('click', function(){
     init();
 });
