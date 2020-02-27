@@ -5,10 +5,13 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gameplay){
         var dice1 = Math.floor(Math.random()*6)+1;
         var dice2 = Math.floor(Math.random()*6)+1;
-        var inputFault = document.querySelector('.fault-score').value = 1;
-        var faultNum;
-        var defaultNum = 1;
-        (inputFault > 0 && inputFault <= 6)? faultNum = inputFault : faultNum = defaultNum;
+        var inputFault = document.querySelector('.fault-score').value;
+        var faultNum;  
+        if(inputFault > 0 && inputFault <= 6){
+            faultNum = inputFault;
+        }else {
+            inputFault = 1;
+        }
         document.getElementById('dice-1').style.display = "block";
         document.getElementById('dice-2').style.display = "block";
         document.getElementById('dice-1').src = "dice-"+dice1+".png";
@@ -78,8 +81,7 @@ function init(){
     document.getElementById('score-1').textContent = "0";
     document.getElementById('current-0').textContent = "0";
     document.getElementById('current-1').textContent = "0";
-    document.querySelector('.fault-score').value = "";
-    document.querySelector('.final-score').value = "";
+    document.querySelector(".fault-score").value = "1";
     document.getElementById('name-0').textContent = "Player 1";
     document.getElementById('name-1').textContent = "player 2";
     document.querySelector('.player-0-panel').classList.remove('winner');
