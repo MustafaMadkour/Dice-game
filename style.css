@@ -194,7 +194,7 @@ i {
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
 .sadface {
     position: absolute;
-    display:block;
+    display: block;
     width: 30px;
     left: 55%;
     transform: translateX(-50%);
