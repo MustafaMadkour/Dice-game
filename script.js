@@ -14,7 +14,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         if(dice1 != inputFault && dice2 != inputFault){
             roundScore += (dice1+dice2);
             document.querySelector('#current-'+playerTurn).textContent = roundScore;
+            document.querySelector('.lose-'+playerTurn).style.display = ("none");
         }else {
+            document.querySelector('.lose-'+playerTurn).style.display = ("block");
             nextPlayer();
         }
     }
@@ -53,8 +55,6 @@ function nextPlayer(){
     document.querySelector('.player-1-panel').classList.toggle("active");
     document.getElementById('dice-1').style.display = "block";
     document.getElementById('dice-2').style.display = "block";
-    document.getElementById('lose').classList.toggle("loser");
-    document.getElementById('lose').classList.toggle("loser");
 }
 
 
@@ -65,6 +65,8 @@ function init(){
     gameplay = 1;
     document.getElementById('dice-1').style.display = "none";
     document.getElementById('dice-2').style.display = "none";
+    document.querySelector('.lose-0').style.display = "none";
+    document.querySelector('.lose-1').style.display = "none";
     document.getElementById('score-0').textContent = "0";
     document.getElementById('score-1').textContent = "0";
     document.getElementById('current-0').textContent = "0";
@@ -76,4 +78,5 @@ function init(){
     document.querySelector('.player-0-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
+
 };
