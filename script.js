@@ -1,57 +1,17 @@
 // Variables 
 var scores, roundScore, playerTurn, gameplay, sadFace;
+var buttonRoll = document.querySelector('.btn-roll');
+var buttonHold = document.querySelector('.btn-hold');
+var buttonNewGame = document.querySelector('.btn-new');
 
 // Intiallizing start mode
 init();
 
-// Roll-Dice button
-document.querySelector('.btn-roll').addEventListener('click', function() {
-    
-    
-    // the sad-face to be available in play-mode
-    document.querySelector('.sadface').style.display = "block";
-    
-    // Rolling-Dice instructions
-    if(gameplay){
+buttonRoll.addEventListener('click', rolling);
+buttonHold.addEventListener('click', holding);
+buttonNewGame.addEventListener('click', init);
 
-        // Rolling 
-        var dice1 = Math.floor(Math.random()*6)+1;
-        var dice2 = Math.floor(Math.random()*6)+1;
-
-        // change the value of one dice that lose
-        var inputFault = document.querySelector('.fault-score').value;
-        var faultNum; 
-        
-        // what happen when the dice rolled
-        if(inputFault > 0 && inputFault <= 12){
-            faultNum = inputFault;
-        }else {
-            inputFault = 1;
-        }
-
-        // show dice 
-        document.getElementById('dice-1').style.display = "block";
-        document.getElementById('dice-2').style.display = "block";
-        document.getElementById('dice-1').src = "dice-"+dice1+".png";
-        document.getElementById('dice-2').src = "dice-"+dice2+".png";
-
-        // Scoring procedures
-        if((dice1 + dice2) != inputFault){
-            roundScore += (dice1+dice2);
-            document.querySelector('#current-'+playerTurn).textContent = roundScore;
-            document.getElementById("losing").classList.remove('sadface-1', 'sadface-2', 'losing');
-        }else {
-            let faildDice = dice1 == inputFault ? 1 : 2;
-            document.getElementById("losing").classList.add(`sadface-${faildDice}`);
-            document.querySelector('.sadface').classList.add('losing');
-            nextPlayer();
-        }
-    }
-});
-
-
-// Hold-Score button
-document.querySelector('.btn-hold').addEventListener('click', function(){
+function holding(){
     if(gameplay){
         // Scoring
         scores[playerTurn] += roundScore;
@@ -73,17 +33,41 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
             nextPlayer();
         }
     }
-});
+};
 
+function rolling(){
+    document.querySelector('.sadface').style.display = "block";
 
+    if(gameplay){
+        var dice1 = Math.floor(Math.random()*6)+1;
+        var dice2 = Math.floor(Math.random()*6)+1;
 
-// New-Game button
-document.querySelector('.btn-new').addEventListener('click', function(){
-    init();
-});
+        var inputFault = document.querySelector('.fault-score').value;
+        var faultNum; 
+        
+        if(inputFault > 0 && inputFault <= 12){
+            faultNum = inputFault;
+        }else {
+            inputFault = 1;
+        }
 
+        document.getElementById('dice-1').style.display = "block";
+        document.getElementById('dice-2').style.display = "block";
+        document.getElementById('dice-1').src = "dice-"+dice1+".png";
+        document.getElementById('dice-2').src = "dice-"+dice2+".png";
 
-
+        if((dice1 + dice2) != inputFault){
+            roundScore += (dice1+dice2);
+            document.querySelector('#current-'+playerTurn).textContent = roundScore;
+            document.getElementById("losing").classList.remove('sadface-1', 'sadface-2', 'losing');
+        }else {
+            let faildDice = dice1 == inputFault ? 1 : 2;
+            document.getElementById("losing").classList.add(`sadface-${faildDice}`);
+            document.querySelector('.sadface').classList.add('losing');
+            nextPlayer();
+        }
+    }
+};
 
 function nextPlayer(){
     (playerTurn == 0) ? playerTurn = 1: playerTurn = 0;
@@ -95,7 +79,6 @@ function nextPlayer(){
     document.getElementById('dice-1').style.display = "block";
     document.getElementById('dice-2').style.display = "block";   
 };
-
 
 function init(){
     scores = [0, 0];
